@@ -20,7 +20,6 @@ int main() // main function
 	// Request amount of currency
 	printf("Enter the amount of currency to convert: \n");
 	scanf("%f", &CUR);
-	//CUR = 1; 
 	
 	// Convert the values and print the table of values 
 	printf("\t  USD  |  EUR  |  CAD  |  AUD  |  GBP  |  CNY \n");
@@ -37,4 +36,5 @@ int main() // main function
 	printf("______________________________________________________\n\n");
 	printf("CNY  |  %.3f | %.3f | %.3f | %.3f | %.3f | %.3f \n", CNY2USD * CUR, CNY2EUR * CUR, CNY2CAD * CUR, CNY2AUD * CUR, CNY2GBP * CUR, CNY * CUR ); // CNY Conversions
 	printf("______________________________________________________\n\n");
+	return(0);
 }
