@@ -62,7 +62,7 @@ int main() // Main Function
 				}
 			}
 			if (primecheck1 * primecheck2 != intone){
-				primecheck2 = -2; // set primecheck 2 to -2 to check if its negative number
+				primecheck2 = -2; // set primecheck2 to -2 to check if its negative number
 				while (primecheck1 * primecheck2 != intone && primecheck2 > -200000000){ // Same as above but negative 
 					primecheck2--;
 					if (primecheck2 == intone){ // make sure it isnt using number as factor for itself 
