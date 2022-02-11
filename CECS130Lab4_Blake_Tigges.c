@@ -4,43 +4,52 @@ Lab 4 - Calculator Using Functions
 Section 1A
 Blake Tigges
 */
-#include <stdio.h>
+#include <stdio.h> 
 
+// prototype all the functions 
 void add(float x, float y);
 void subtract(float x, float y);
 void multiply(float x, float y);
 void divide(float x, float y);
-void mod(int x, int y);
+void modu(int z, int c);
 void checkprime(int testnum);
-void factorial(int x, int y);
+void factorial(int x);
 void power(float x, float y);
-void customfunc(float x, float y);
+void fibonacci(int x); 
 
 int main() {
 	int opnum = -1; // create var for picking operation 
 	while (opnum != 0) // exit when 7
 	{
 	float numone = 0; float numtwo = 0; int intone = 0; int inttwo = 0; // Set the float and integer variables 
-	printf("Calculator Menu: \n(1) Addition \n(2) Subtraction \n(3) Multiplication \n(4) Division \n(5) Modulus (integers only) \n(6) Test if prime (integers only) \n(7) Factorial (integers only) \n(8) Power \n(9) Your function \n(0) Exit \n");// Display options
+	printf("Calculator Menu: \n(1) Addition \n(2) Subtraction \n(3) Multiplication \n(4) Division \n(5) Modulus (integers only) \n(6) Test if prime (integers only) \n(7) Factorial (integers only, under 20) \n(8) Power \n(9) Fibonacci Sequence (Up to 94)\n(0) Exit \n");// Display options
 	printf("Enter operation number: \n"); // Ask for what to do
 	scanf("%d", &opnum); // get input for opnum
 	switch (opnum){
 		case 1: 
 			printf("Enter first number: ");		scanf("%f", &numone);
 			printf("Enter second number: ");	scanf("%f", &numtwo);
-			add(numone, numtwo);
+			add(numone, numtwo); // Request 2 numbers then call the correct function
 		break;
 		case 2: 
-			subtract(numone, numtwo);
+			printf("Enter first number: ");		scanf("%f", &numone);
+			printf("Enter second number: ");	scanf("%f", &numtwo);
+			subtract(numone, numtwo); // Request 2 numbers then call the correct function
 		break;
 		case 3: 
-			multiply(numone, numtwo);
+			printf("Enter first number: ");		scanf("%f", &numone);
+			printf("Enter second number: ");	scanf("%f", &numtwo);
+			multiply(numone, numtwo); // Request 2 numbers then call the correct function
 		break;
 		case 4: 
-			divide(numone, numtwo);
+			printf("Enter first number: ");		scanf("%f", &numone);
+			printf("Enter second number: ");	scanf("%f", &numtwo);
+			divide(numone, numtwo); // Request 2 numbers then call the correct function
 		break;
 		case 5: 
-			mod(intone, inttwo);
+			printf("Enter first number: ");		scanf("%d", &intone);
+			printf("Enter second number: ");	scanf("%d", &inttwo);
+			modu(intone, inttwo); // Request 2 numbers then call the correct function
 		break;
 		case 6:			
 	 		printf("Enter number to test: "); // Prime number checker
@@ -48,13 +57,17 @@ int main() {
 			checkprime(intone);
 		break;
 		case 7:
-			factorial(intone, inttwo);
+			printf("Enter number: ");		scanf("%d", &intone);
+			factorial(intone); // Request number then call the correct function
 		break;
 		case 8:
-			power(numone, numtwo);
+			printf("Enter first number: ");		scanf("%f", &numone);
+			printf("Enter second number: ");	scanf("%f", &numtwo);
+			power(numone, numtwo); // Request 2 numbers then call the correct function
 		break;
 		case 9:
-			customfunc(numone, numtwo);
+			printf("Enter amount to compute: ");		scanf("%d", &intone);
+			fibonacci(intone);
 		break;
 		}
 	}
@@ -66,36 +79,20 @@ void add(float x, float y) {
 	printf("%f + %f = %f \n", x, y, x + y); // Add the numbers and print 
 } 
 void subtract(float x, float y){
-	float numone = 0; float numtwo = 0;
-	printf("Enter first number: "); // Subtraction operation
-	scanf("%f", &numone);
-	printf("Enter second number: ");
-	scanf("%f", &numtwo);
-	printf("%f - %f = %f \n", numone, numtwo, numone - numtwo);  // Subtract the numbers and print 
+	printf("%f - %f = %f \n", x, y, x - y);  // Subtract the numbers and print 
 }
 void multiply(float x, float y){
-	float numone = 0; float numtwo = 0;
-	printf("Enter first number: "); // Multiplication Operation
-	scanf("%f", &numone);
-	printf("Enter second number: ");
-	scanf("%f", &numtwo);
-	printf("%f x %f = %f \n", numone, numtwo, numone * numtwo); // Multiply the numbers and print 
+	printf("%f x %f = %f \n", x, y, x * y); // Multiply the numbers and print 
 }
 void divide(float x, float y){
-	float numone = 0; float numtwo = 0;
-	printf("Enter first number: "); // Division operation
-	scanf("%f", &numone);
-	printf("Enter second number: ");
-	scanf("%f", &numtwo);
-	printf("%f / %f = %f \n", numone, numtwo, numone / numtwo); // Divide the numbers and print 
+	if (y == 0) {
+		printf("You can't divide by zero \n");
+	} else {
+	printf("%f / %f = %f \n", x, y, x / y); // Divide the numbers and print 
+	}
 }
-void mod(int x, int y){
-	int intone = 0; int inttwo = 0;
-	printf("Enter first number: "); // Modulus operation
-	scanf("%d", &intone);
-	printf("Enter second number: ");
-	scanf("%d", &inttwo);
-	printf("%d mod %d = %d \n", intone, inttwo, intone % inttwo); // Mod the numbers and print 
+void modu(int z, int c){
+	printf("%d mod %d = %d \n", z, c, z % c); // Mod the numbers and print 
 }
 void checkprime(int testnum){
 	int primecheck1 = 2; int primecheck2 = 2;
@@ -136,17 +133,52 @@ void checkprime(int testnum){
 			printf("Prime!\n\n"); // Print prime if it is prime 
 		}
 }
-void factorial(int x, int y){
-	int intone = 0; int inttwo = 0;
-
+void factorial(int x){
+	int y = 0;
+	unsigned long long int factorial = x; // make factorial = x 
+	if (x >=20){
+		x = 20;
+	}
+	if (x < 0){
+		printf("Number must be greater than 0 \n");  // dont do negative factorials
+	} else {
+		for(y = x-1; y > 0; --y){ 
+			factorial = factorial * y; // do the math on factorial instead of x
+		} 
+		printf("%d! is %llu \n", x, factorial);	// print the results
+	}
+	
 }
 void power(float x, float y){
-	float numone = 0; float numtwo = 0;
-
+	float o = x; // original x
+	float p = y; // original power
+	if (y > 0){
+		for (y = y-1; y > 0; y--){ // positive exponent 
+			x = x * o; 
+		}
+	} else if(y < 0){
+		for (y = y+1; y<0; y++){ // negative exponent
+			x = x * o;
+		}
+		x = 1/x; // invert it for the negative exponet 
+	}
+	printf("%f ^ %f is %f\n", o, p, x); // print results
 }
-void customfunc(float x, float y){
-	float numone = 0; float numtwo = 0;
-
-}
-
+void fibonacci(int x){
+	unsigned long long int res[1000] = {0,1}; // set first 2 numbers as 0 and 1, only can hold up to 94th number
+	int i = 2; // set count at 2 so it starts at 3 number of array
+	int p = 0; 
+	if (x >= 94){ // set x to 94 since the array cant hold numbers bigger than the 94th number 
+		x = 94;
+	} 
+	for (i; i < x; i++){
+		res[i] = res[i-1] + res[i-2]; // set every number after first 2 by adding the 2 before it 
+	}
+	printf("%d numbers of fibonacci sequence are ", x);
+	for (p; p < x; p++){
+		printf("%llu, ", res[p]); // print the amount of numbers asked for 
+	}
+	printf("\n");
+		
+} 
 

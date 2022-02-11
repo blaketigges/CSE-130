@@ -38,7 +38,11 @@ int main() // Main Function
 			scanf("%f", &numone);
 			printf("Enter second number: ");
 			scanf("%f", &numtwo);
+			if (numtwo == 0){
+				printf("Dont divide by 0 \n");
+			} else {
 			printf("%f / %f = %f \n", numone, numtwo, numone / numtwo); // Divide the numbers and print 
+			}
 		break;
 		case 5: printf("Enter first number: "); // Modulus operation
 			scanf("%d", &intone);
