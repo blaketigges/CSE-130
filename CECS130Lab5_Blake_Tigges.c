@@ -20,11 +20,11 @@ int main(){
 	printf("What is a word to describe yourself? ");
 	scanf("%s", desc);
 	
-	char *act[4] = {"eat", "swim"}
+	char *act[4] = {"eat", "swim", "c", "b"};
 	srand(time(0));
 	int randChoice = rand() % 4;
 	
 	
-	printf("%s is a %s %s year old who likes to eat", name, desc, age);
+	printf("%s is a %s %s year old who likes to %s", name, desc, age, act[randChoice]);
 	return 0;
 }
