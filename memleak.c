@@ -3,9 +3,9 @@
 int main(){
 	while(1==1){
 		int *ptr;
-		ptr = calloc(50, sizeof(int));
+		ptr = calloc(1000, sizeof(int));
 		int i;
-		for (i = 1; i < 100; i++){
+		for (i = 1; i < 200; i++){
 		*ptr = 10000;
 		}
 	}
