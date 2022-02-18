@@ -16,15 +16,15 @@ int main(){
 	printf("What is your age? ");
 	scanf("%s", age);
 	
-	char desc[100];
-	printf("What is a word to describe yourself? ");
-	scanf("%s", desc);
-	
-	char *act[4] = {"eat", "swim", "c", "b"};
+	char *go[4] = {"outside", "to McDonalds", "to walmart", "to his basement"};
+	char *his[4] = {"dog", "cat", "monkey", "toes"};
+	char *from[4] = {"florida", "alaska", "peru", "africa"};
+		
 	srand(time(0));
 	int randChoice = rand() % 4;
 	
-	
-	printf("%s is a %s %s year old who likes to %s", name, desc, age, act[randChoice]);
+	printf("%s was a %s year old who like to go %s and play with his %s. He was born in %s, but once he became a clown he moved to clown town. ", name, age, go[randChoice], his[randChoice], from[randChoice] );
+	printf("");
 	return 0;
 }
+ 
