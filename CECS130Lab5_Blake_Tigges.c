@@ -29,4 +29,4 @@ int main(){
 	printf("But then he had a project due for his class and didnt know what to write to make it long enough so he wrote about not knowing what to write. But then %s", ending[randChoice]);
 	return 0;
 }
- 
+
