@@ -15,14 +15,14 @@ struct phonebook{
 	};
 
 int main(){
-	int opt = 0;
 	struct phonebook book[10];
 	
-	int c = 0;
+	int opt = 0;
 	while (opt != 4){
 	printf("Phone Book Application\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) Exit\n");
 	printf("Enter option: ");
 	scanf("%d", &opt);
+	int c = 0;
 	switch (opt){
 		case 1: // Add first name, last name, and number, then increment c
 			printf("Enter First Name: ");
