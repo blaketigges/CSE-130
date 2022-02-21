@@ -8,7 +8,7 @@
             "name": "(Windows) Launch",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "enter program name, for example ${workspaceFolder}/a.exe",
+            "program": "enter program name, for example ${workspaceFolder}/CECS130Lab6_Blake_Tigges.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
