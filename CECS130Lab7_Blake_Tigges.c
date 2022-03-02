@@ -15,6 +15,7 @@ typedef struct{
 	} phonebook;
 
 void addContact(phonebook *book, int c, int numOfContacts);
+void deleteContact(phonebook *book, int c, int numOfContacts);
 
 int main(){
 	int numOfContacts = 10; //number of contacts to start with
@@ -33,22 +34,8 @@ int main(){
 			numOfContacts++;
 			break;
 		case 2: // ask who to delete, then move everything down one, then decrease c
-			printf("Who do you want to delete?\n");
-			char delFirst[80];
-			printf("Enter First Name: ");
-			scanf("%s", delFirst);
-			char delLast[80];
-			printf("Enter Last Name: ");
-			scanf("%s", delLast);
-			for (int i = 0; i < c; i++){
-				if (strcmp(delFirst, dBook[i].firstName) == 0 && strcmp(delLast, dBook[i].lastName) == 0){ // find if entered name is in book
-					for (int j = i; j < c; j++){
-						dBook[j] = dBook[j+1]; // if so move everything back one
-					}
-					printf("Deleted %s %s\n", delFirst, delLast); 
-					c--;
-				}
-			}
+			deleteContact(dBook, c, numOfContacts);
+			c--;
 			break;
 		case 3: // print out 0 through c
 			printf("Contacts: \n");
@@ -89,4 +76,21 @@ void addContact(phonebook *dBook, int c, int numOfContacts){
 	printf("Enter Phone Number: ");
 	scanf("%s", dBook[c].number);
 	printf("Contact added %s %s #%s\n", dBook[c].firstName, dBook[c].lastName, dBook[c].number); // confirm contact added
+}
+void deleteContact(phonebook *dBook, int c, int numOfContacts){
+	printf("Who do you want to delete?\n");
+	char delFirst[80];
+	printf("Enter First Name: ");
+	scanf("%s", delFirst);
+	char delLast[80];
+	printf("Enter Last Name: ");
+	scanf("%s", delLast);
+	for (int i = 0; i < c; i++){
+		if (strcmp(delFirst, dBook[i].firstName) == 0 && strcmp(delLast, dBook[i].lastName) == 0){ // find if entered name is in book
+			for (int j = i; j < c; j++){
+				dBook[j] = dBook[j+1]; // if so move everything back one
+			}
+			printf("Deleted %s %s\n", delFirst, delLast); 
+		}
+	}
 }
