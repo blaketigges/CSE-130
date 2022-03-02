@@ -14,6 +14,8 @@ typedef struct{
 		char number[11];
 	} phonebook;
 
+void addContact(phonebook *dBook, int c, int numOfContacts);
+
 int main(){
 	int numOfContacts = 10; //number of contacts to start with
 	phonebook *tBook; // temp pointer 
@@ -27,23 +29,9 @@ int main(){
 	scanf("%d", &opt);
 	switch (opt){
 		case 1: // Add first name, last name, and number, then increment c
-			if (c == numOfContacts){ 
-				tBook = realloc(dBook, (numOfContacts + 1) * sizeof(phonebook)); // reallocates memory if c = 10
-				if (tBook == NULL){
-					printf("Reallocation failed, out of memory!!\n"); // if realloc fails say it failed
-				} else {
-					dBook = tBook; // if realloc succeeds copy temp book to dynamic book
-					numOfContacts++;
-				}
-			} 
-			printf("Enter First Name: ");
-			scanf("%s", dBook[c].firstName);
-			printf("Enter Last Name: ");
-			scanf("%s", dBook[c].lastName);
-			printf("Enter Phone Number: ");
-			scanf("%s", dBook[c].number);
-			printf("Contact added %s %s #%s\n", dBook[c].firstName, dBook[c].lastName, dBook[c].number); // confirm contact added
+			addContact(dBook, c, numOfContacts);
 			c++;
+			numOfContacts++;
 			break;
 		case 2: // ask who to delete, then move everything down one, then decrease c
 			printf("Who do you want to delete?\n");
@@ -73,4 +61,23 @@ int main(){
 	}
 	free(dBook); // free memory
 	return 0;
+}
+
+void addContact(phonebook *dBook, int c, int numOfContacts){
+	phonebook *tBook; // temp pointer 
+	if (c == numOfContacts){ 
+		tBook = realloc(dBook, (numOfContacts + 1) * sizeof(phonebook)); // reallocates memory if c = 10
+		if (tBook == NULL){
+			printf("Reallocation failed, out of memory!!\n"); // if realloc fails say it failed
+		} else {
+			dBook = tBook; // if realloc succeeds copy temp book to dynamic book
+		}
+	} 
+	printf("Enter First Name: ");
+	scanf("%s", dBook[c].firstName);
+	printf("Enter Last Name: ");
+	scanf("%s", dBook[c].lastName);
+	printf("Enter Phone Number: ");
+	scanf("%s", dBook[c].number);
+	printf("Contact added %s %s #%s\n", dBook[c].firstName, dBook[c].lastName, dBook[c].number); // confirm contact added
 }
