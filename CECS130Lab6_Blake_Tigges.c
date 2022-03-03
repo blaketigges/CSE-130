@@ -16,6 +16,7 @@ typedef struct{
 
 void addContact(phonebook *dBook, int c, int numOfContacts);
 void deleteContact(phonebook *book, int c, int numOfContacts);
+void printAllContacts(phonebook *book, int c);
 
 int main(){
 	int numOfContacts = 10; //number of contacts to start with
@@ -39,10 +40,7 @@ int main(){
 			c--;
 			break;
 		case 3: // print out 0 through c
-			printf("Contacts: \n");
-			for (int k = 0; k < c; k++){
-				printf("%s %s %s\n", dBook[k].firstName, dBook[k].lastName, dBook[k].number); // print contacts through c 
-			}
+			printAllContacts(dBook, c);
 			break;
 		}
 	}
@@ -83,5 +81,11 @@ void deleteContact(phonebook *dBook, int c, int numOfContacts){
 			}
 			printf("Deleted %s %s\n", delFirst, delLast); 
 		}
+	}
+}
+void printAllContacts(phonebook *dBook, int c){
+	printf("Contacts: \n");
+	for (int k = 0; k < c; k++){
+		printf("%s %s %s\n", dBook[k].firstName, dBook[k].lastName, dBook[k].number); // print contacts through c 
 	}
 }
