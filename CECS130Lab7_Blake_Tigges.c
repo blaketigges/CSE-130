@@ -18,6 +18,9 @@ void addContact(phonebook *book, int c, int numOfContacts);
 void deleteContact(phonebook *book, int c, int numOfContacts);
 void printAllContacts(phonebook *book, int c);
 void alphabetizeContacts(phonebook *book, int c);
+void findNumber(phonebook *book, int c);
+void selectRandomContact(phonebook *book, int c);
+void deleteAllContacts(phonebook *book, int c);
 
 int main(){
 	int numOfContacts = 10; //number of contacts to start with
@@ -44,13 +47,16 @@ int main(){
 			break;
 		case 4: // alphabetically sort contacts by name (first or last)
 			printf("Contacts: \n");
+			alphabetizeContacts(dBook, c);
 			break;
 		case 5: // find phone number by name
-			
+			findNumber(dBook, c);
 			break;
 		case 6: // randomly select a contact and print out their name and number
+			selectRandomContact(dBook, c);
 			break;
 		case 7: // delete all contacts
+			deleteAllContacts(dBook, c);
 			break;
 		}
 	}
@@ -98,4 +104,37 @@ void printAllContacts(phonebook *dBook, int c){
 	for (int k = 0; k < c; k++){
 		printf("%s %s %s\n", dBook[k].firstName, dBook[k].lastName, dBook[k].number); // print contacts through c 
 	}
+}
+
+void alphabetizeContacts(phonebook *dBook, int c){
+	printf("Sort by first or last?\n");
+	char sort[80];
+	scanf("%s", sort);
+	
+}
+void findNumber(phonebook *dBook, int c){
+	char findFirst[80];
+	printf("Enter First Name: ");
+	scanf("%s", findFirst);
+	char findLast[80];
+	printf("Enter Last Name: ");
+	scanf("%s", findLast);
+	for (int i = 0; i < c; i++){
+		if (strcmp(findFirst, dBook[i].firstName) == 0 && strcmp(findLast, dBook[i].lastName) == 0){ // if name is in list
+			printf("First: %s\n Last:%s\n #%s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // print found name and number
+		}
+	}
+}
+void randomContact(phonebook *dBook, int c){
+	srand(time(0)); // seed random number generator
+	int r = rand() % c; // generate random number between 0 and c
+	printf("%s %s %s\n", dBook[r].firstName, dBook[r].lastName, dBook[r].number); // print random contact
+}
+void deleteAllContacts(phonebook *dBook, int c){
+	for (int i = 0; i < c; i++){
+		dBook[i].firstName[0] = '\0';
+		dBook[i].lastName[0] = '\0';
+		dBook[i].number[0] = '\0';
+	}
+	printf("All contacts deleted\n");
 }

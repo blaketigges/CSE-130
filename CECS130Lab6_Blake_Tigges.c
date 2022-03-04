@@ -26,18 +26,18 @@ int main(){
 
 	int opt = 0; 
 	while (opt != 4){
-	printf("Contacts:\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) Exit\n");
+	printf("Contacts:\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) Exit\n"); // print out options
 	printf("Enter option: ");
 	scanf("%d", &opt);
 	switch (opt){
 		case 1: // Add first name, last name, and number, then increment c
 			addContact(dBook, c, numOfContacts);
-			c++;
-			numOfContacts++;
+			c++; // increment c
+			numOfContacts++; // increment numOfContacts
 			break;
 		case 2: // ask who to delete, then move everything down one, then decrease c
 			deleteContact(dBook, c, numOfContacts);
-			c--;
+			c--; // decrement c	
 			break;
 		case 3: // print out 0 through c
 			printAllContacts(dBook, c);
