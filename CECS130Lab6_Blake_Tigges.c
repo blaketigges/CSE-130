@@ -73,9 +73,11 @@ void deleteContact(phonebook *dBook, int c){
 	char delLast[80];
 	printf("Enter Last Name: ");
 	scanf("%s", delLast);
-	for (int i = 0; i < c; i++){
+	int i; 
+	for(i = 0; i < c; i++){
 		if (strcmp(delFirst, dBook[i].firstName) == 0 && strcmp(delLast, dBook[i].lastName) == 0){ // find if entered name is in book
-			for (int j = i; j < c; j++){
+			int j;
+			for (j = i; j < c; j++){
 				dBook[j] = dBook[j+1]; // if so move everything back one
 			}
 			printf("Deleted %s %s\n", delFirst, delLast); 
@@ -84,7 +86,8 @@ void deleteContact(phonebook *dBook, int c){
 }
 void printAllContacts(phonebook *dBook, int c){
 	printf("Contacts: \n");
-	for (int k = 0; k < c; k++){
+	int k;
+	for (k = 0; k < c; k++){
 		printf("%s %s %s\n", dBook[k].firstName, dBook[k].lastName, dBook[k].number); // print contacts through c 
 	}
 }
