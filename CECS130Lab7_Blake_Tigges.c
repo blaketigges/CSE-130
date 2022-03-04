@@ -17,6 +17,7 @@ typedef struct{
 void addContact(phonebook *book, int c, int numOfContacts);
 void deleteContact(phonebook *book, int c, int numOfContacts);
 void printAllContacts(phonebook *book, int c);
+void alphabetizeContacts(phonebook *book, int c);
 
 int main(){
 	int numOfContacts = 10; //number of contacts to start with
