@@ -15,12 +15,11 @@ typedef struct{
 	} phonebook;
 
 void addContact(phonebook *dBook, int c, int numOfContacts);
-void deleteContact(phonebook *dBook, int c, int numOfContacts);
+void deleteContact(phonebook *dBook, int c);
 void printAllContacts(phonebook *dBook, int c);
 
 int main(){
 	int numOfContacts = 3; //number of contacts to start with
-	phonebook *tBook; // temp pointer 
 	phonebook *dBook = malloc(numOfContacts * sizeof(phonebook)); // dynamic pointer
 	int c = 0; // current contact
 
@@ -36,7 +35,7 @@ int main(){
 			numOfContacts++; // increment numOfContacts
 			break;
 		case 2: // ask who to delete, then move everything down one, then decrease c
-			deleteContact(dBook, c, numOfContacts);
+			deleteContact(dBook, c);
 			c--; // decrement c	
 			break;
 		case 3: // print out 0 through c
@@ -66,7 +65,7 @@ void addContact(phonebook *dBook, int c, int numOfContacts){
 	scanf("%s", dBook[c].number);
 	printf("Contact added %s %s #%s\n", dBook[c].firstName, dBook[c].lastName, dBook[c].number); // confirm contact added
 }
-void deleteContact(phonebook *dBook, int c, int numOfContacts){
+void deleteContact(phonebook *dBook, int c){
 	printf("Who do you want to delete?\n");
 	char delFirst[80];
 	printf("Enter First Name: ");
