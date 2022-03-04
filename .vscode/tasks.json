@@ -47,39 +47,9 @@
 			  "-o",
 			  "${fileDirname}\\${fileBasenameNoExtension}.exe"
 			],
-<<<<<<< HEAD
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"detail": "compiler: C:\\MinGW\\bin\\gcc.exe"
-		},
-		{
-			"type": "cppbuild",
-			"label": "C/C++: cl.exe build active file",
-			"command": "cl.exe",
-			"args": [
-				"/Zi",
-				"/EHsc",
-				"/nologo",
-				"/Fe:",
-				"${fileDirname}\\${fileBasenameNoExtension}.exe",
-				"${file}"
-			],
-			"options": {
-				"cwd": "${fileDirname}"
-			},
-			"problemMatcher": [
-				"$msCompile"
-			],
-			"group": "build",
-			"detail": "compiler: cl.exe"
-		}
-=======
 			"options": {
 			  "cwd": "C:\\MinGW64\\bin"
 			}
 		  }
->>>>>>> e2326f32e6ee8ce8e99afc65bd8fc02742c1c0b5
 	]
 }

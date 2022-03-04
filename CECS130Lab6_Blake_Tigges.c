@@ -19,14 +19,14 @@ void deleteContact(phonebook *dBook, int c, int numOfContacts);
 void printAllContacts(phonebook *dBook, int c);
 
 int main(){
-	int numOfContacts = 10; //number of contacts to start with
+	int numOfContacts = 3; //number of contacts to start with
 	phonebook *tBook; // temp pointer 
 	phonebook *dBook = malloc(numOfContacts * sizeof(phonebook)); // dynamic pointer
 	int c = 0; // current contact
 
 	int opt = 0; 
 	while (opt != 4){
-	printf("Phone Book Application\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) Exit\n");
+	printf("Contacts:\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) Exit\n");
 	printf("Enter option: ");
 	scanf("%d", &opt);
 	switch (opt){
@@ -51,7 +51,7 @@ int main(){
 void addContact(phonebook *dBook, int c, int numOfContacts){
 	phonebook *tBook; // temp pointer 
 	if (c == numOfContacts){ 
-		tBook = realloc(dBook, (numOfContacts + 1) * sizeof(phonebook)); // reallocates memory if c = 10
+		tBook = realloc(dBook, (numOfContacts + 1) * sizeof(phonebook)); // reallocates memory if c = numOfContacts
 		if (tBook == NULL){
 			printf("Reallocation failed, out of memory!!\n"); // if realloc fails say it failed
 		} else {
