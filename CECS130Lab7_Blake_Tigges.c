@@ -90,9 +90,11 @@ void deleteContact(phonebook *dBook, int c, int numOfContacts){
 	char delLast[80];
 	printf("Enter Last Name: ");
 	scanf("%s", delLast);
-	for (int i = 0; i < c; i++){
+	int i;
+	for (i = 0; i < c; i++){
 		if (strcmp(delFirst, dBook[i].firstName) == 0 && strcmp(delLast, dBook[i].lastName) == 0){ // find if entered name is in book
-			for (int j = i; j < c; j++){
+			int j;
+			for (j = i; j < c; j++){
 				dBook[j] = dBook[j+1]; // if so move everything back one
 			}
 			printf("Deleted %s %s\n", delFirst, delLast); 
@@ -101,7 +103,8 @@ void deleteContact(phonebook *dBook, int c, int numOfContacts){
 }
 void printAllContacts(phonebook *dBook, int c){
 	printf("Contacts: \n");
-	for (int k = 0; k < c; k++){
+	int k;
+	for (k = 0; k < c; k++){
 		printf("%s %s %s\n", dBook[k].firstName, dBook[k].lastName, dBook[k].number); // print contacts through c 
 	}
 }
@@ -119,7 +122,8 @@ void findNumber(phonebook *dBook, int c){
 	char findLast[80];
 	printf("Enter Last Name: ");
 	scanf("%s", findLast);
-	for (int i = 0; i < c; i++){
+	int i;
+	for (i = 0; i < c; i++){
 		if (strcmp(findFirst, dBook[i].firstName) == 0 && strcmp(findLast, dBook[i].lastName) == 0){ // if name is in list
 			printf("First: %s\n Last:%s\n #%s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // print found name and number
 		}
@@ -131,7 +135,8 @@ void randomContact(phonebook *dBook, int c){
 	printf("%s %s %s\n", dBook[r].firstName, dBook[r].lastName, dBook[r].number); // print random contact
 }
 void deleteAllContacts(phonebook *dBook, int c){
-	for (int i = 0; i < c; i++){
+	int i;
+	for (i = 0; i < c; i++){
 		dBook[i].firstName[0] = '\0';
 		dBook[i].lastName[0] = '\0';
 		dBook[i].number[0] = '\0';
