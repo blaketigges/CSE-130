@@ -13,7 +13,7 @@ typedef struct{
 		char firstName[80];
 		char lastName[80];
 		char number[11];
-} phonebook;
+	} phonebook;
 
 void addContact(phonebook *book, int c, int numOfContacts);
 void deleteContact(phonebook *book, int c, int numOfContacts);
@@ -40,6 +40,10 @@ int main(){
 			numOfContacts++;
 			break;
 		case 2: // ask who to delete, then move everything down one, then decrease c
+			if (c == 0){
+				printf("Your contacts are empty\n");
+				break;
+			}
 			deleteContact(dBook, c, numOfContacts);
 			c--;
 			break;
@@ -47,13 +51,25 @@ int main(){
 			printAllContacts(dBook, c);
 			break;
 		case 4: // alphabetically sort contacts by name (first or last)
+			if (c == 0){
+				printf("Your contacts are empty\n");
+				break;
+			}
 			alphabetizeContacts(dBook, c);
 			printAllContacts(dBook, c);
 			break;
 		case 5: // find phone number by name
+			if (c == 0){
+				printf("Your contacts are empty\n");
+				break;
+			}
 			findNumber(dBook, c);
 			break;
 		case 6: // randomly select a contact and print out their name and number
+			if (c == 0){
+				printf("Your contacts are empty\n");
+				break;
+			}
 			selectRandomContact(dBook, c);
 			break;
 		case 7: // delete all contacts
@@ -158,9 +174,6 @@ void findNumber(phonebook *dBook, int c){
 	}
 }
 void selectRandomContact(phonebook *dBook, int c){
-	if (c == 0){
-		printf("Your contacts are empty\n");
-	}
 	srand(time(0)); // seed random number generator
 	int r = rand() % c; // generate random number between 0 and c
 	printf("%s %s %s\n", dBook[r].firstName, dBook[r].lastName, dBook[r].number); // print random contact
