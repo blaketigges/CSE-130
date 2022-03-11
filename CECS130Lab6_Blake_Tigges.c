@@ -25,7 +25,7 @@ int main(){
 
 	int opt = 0; 
 	while (opt != 4){
-	printf("Contacts:\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) Exit\n"); // print out options
+	printf("Contacts:\n    1) Add Friend \n    2) Deete Friend \n    3) Show phone book\n    4) Exit\n"); // print out options
 	printf("Enter option: ");
 	scanf("%d", &opt);
 	switch (opt){

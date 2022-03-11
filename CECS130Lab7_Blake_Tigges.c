@@ -7,12 +7,13 @@ Blake Tigges
 #include <stdio.h> 
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 typedef struct{
 		char firstName[80];
 		char lastName[80];
 		char number[11];
-	} phonebook;
+} phonebook;
 
 void addContact(phonebook *book, int c, int numOfContacts);
 void deleteContact(phonebook *book, int c, int numOfContacts);
@@ -23,13 +24,13 @@ void selectRandomContact(phonebook *book, int c);
 void deleteAllContacts(phonebook *book, int c);
 
 int main(){
-	int numOfContacts = 10; //number of contacts to start with
+	int numOfContacts = 3; //number of contacts to start with
 	phonebook *dBook = malloc(numOfContacts * sizeof(phonebook)); // dynamic pointer
 	int c = 0; // current contact
 
 	int opt = 0; 
 	while (opt != 8){
-	printf("Phone Book Application\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) alphabetize the list\n    5) find phone number for given name\n    6) Randomly pick number to call\n    7) delete everyone\n    8) Exit\n");
+	printf("Phone Book Application\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) Alphabetize the list\n    5) Find phone number for given name\n    6) Randomly pick number to call\n    7) Delete everyone\n    8) Exit\n");
 	printf("Enter option: ");
 	scanf("%d", &opt);
 	switch (opt){
@@ -46,8 +47,8 @@ int main(){
 			printAllContacts(dBook, c);
 			break;
 		case 4: // alphabetically sort contacts by name (first or last)
-			printf("Contacts: \n");
 			alphabetizeContacts(dBook, c);
+			printAllContacts(dBook, c);
 			break;
 		case 5: // find phone number by name
 			findNumber(dBook, c);
@@ -57,6 +58,8 @@ int main(){
 			break;
 		case 7: // delete all contacts
 			deleteAllContacts(dBook, c);
+			c = 0;
+			numOfContacts = 3;
 			break;
 		}
 	}
@@ -112,8 +115,33 @@ void printAllContacts(phonebook *dBook, int c){
 void alphabetizeContacts(phonebook *dBook, int c){
 	printf("Sort by first or last?\n");
 	char sort[80];
+	printf("Enter choice: ");
 	scanf("%s", sort);
-	
+	if (strcmp(sort, "first") == 0){
+		int i, j;
+		for (i = 0; i < c; i++){
+			for (j = i + 1; j < c; j++){
+				if (strcmp(dBook[i].firstName, dBook[j].firstName) > 0){
+					phonebook temp = dBook[i];
+					dBook[i] = dBook[j];
+					dBook[j] = temp;
+				}
+			}
+		}
+	} else if (strcmp(sort, "last") == 0){
+		int i, j;
+		for (i = 0; i < c; i++){
+			for (j = i + 1; j < c; j++){
+				if (strcmp(dBook[i].lastName, dBook[j].lastName) > 0){
+					phonebook temp = dBook[i];
+					dBook[i] = dBook[j];
+					dBook[j] = temp;
+				}
+			}
+		}
+	} else {
+		printf("Invalid, pick first or last.\n");
+	}
 }
 void findNumber(phonebook *dBook, int c){
 	char findFirst[80];
@@ -125,11 +153,14 @@ void findNumber(phonebook *dBook, int c){
 	int i;
 	for (i = 0; i < c; i++){
 		if (strcmp(findFirst, dBook[i].firstName) == 0 && strcmp(findLast, dBook[i].lastName) == 0){ // if name is in list
-			printf("First: %s\n Last:%s\n #%s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // print found name and number
+			printf("First: %s \nLast:%s \n#%s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // print found name and number
 		}
 	}
 }
-void randomContact(phonebook *dBook, int c){
+void selectRandomContact(phonebook *dBook, int c){
+	if (c == 0){
+		printf("Your contacts are empty\n");
+	}
 	srand(time(0)); // seed random number generator
 	int r = rand() % c; // generate random number between 0 and c
 	printf("%s %s %s\n", dBook[r].firstName, dBook[r].lastName, dBook[r].number); // print random contact
