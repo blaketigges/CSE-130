@@ -22,6 +22,8 @@ void alphabetizeContacts(phonebook *book, int c);
 void findNumber(phonebook *book, int c);
 void selectRandomContact(phonebook *book, int c);
 void deleteAllContacts(phonebook *book, int c);
+void saveToFile(phonebook *book, int c);
+void loadFromFile(phonebook *book, int c);
 
 int main(){
 	int numOfContacts = 3; //number of contacts to start with
@@ -29,8 +31,8 @@ int main(){
 	int c = 0; // current contact
 
 	int opt = 0; 
-	while (opt != 8){
-	printf("Phone Book Application\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) Alphabetize the list\n    5) Find phone number for given name\n    6) Randomly pick number to call\n    7) Delete everyone\n    8) Exit\n");
+	while (opt != 10){
+	printf("Phone Book Application\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) Alphabetize the list\n    5) Find phone number for given name\n    6) Randomly pick number to call\n    7) Delete everyone\n    8) Save to file\n    9) Load from a file\n    10) Exit\n");
 	printf("Enter option: ");
 	scanf("%d", &opt);
 	switch (opt){
@@ -76,6 +78,10 @@ int main(){
 			deleteAllContacts(dBook, c);
 			c = 0;
 			numOfContacts = 3;
+			break;
+		case 8: // save to a file
+			break;
+		case 9: // load from a file
 			break;
 		}
 	}
