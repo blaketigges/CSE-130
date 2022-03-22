@@ -23,13 +23,13 @@ void findNumber(phonebook *book, int c);
 void selectRandomContact(phonebook *book, int c);
 void deleteAllContacts(phonebook *book, int c);
 void saveToFile(phonebook *book, int c);
-void loadFromFile(phonebook *book, int c);
+void loadFromFile(phonebook *book, int *C);
 
 int main(){
 	int numOfContacts = 3; //number of contacts to start with
 	phonebook *dBook = malloc(numOfContacts * sizeof(phonebook)); // dynamic pointer
 	int c = 0; // current contact
-
+	int *C = &c;
 	int opt = 0; 
 	while (opt != 10){
 	printf("Phone Book Application\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) Alphabetize the list\n    5) Find phone number for given name\n    6) Randomly pick number to call\n    7) Delete everyone\n    8) Save to file\n    9) Load from a file\n    10) Exit\n");
@@ -87,6 +87,10 @@ int main(){
 			saveToFile(dBook, c);
 			break;
 		case 9: // load from a file
+			loadFromFile(dBook, &c);
+			printf("%d\n", c);
+			printf("%d\n", C);
+			c = *C;
 			break;
 		}
 	}
@@ -203,6 +207,7 @@ void saveToFile(phonebook *dBook, int c){
 	char filename[80];
 	char choice[80];
 	printf("Do you want to chose a file name? (yes or no)\n"); // ask if user wants to chose a file name
+	scanf("%s", choice);
 	if (strcmp(choice, "yes") == 0){
 		printf("Enter file name: ");
 		scanf("%s", filename);
@@ -211,9 +216,35 @@ void saveToFile(phonebook *dBook, int c){
 	}
 	fileOut = fopen(filename, "w"); // open file for writing
 	int i;
+	fprintf(fileOut, "%d\n", c); // write number of contacts to file
 	for (i = 0; i < c; i++){
 		fprintf(fileOut, "%s %s %s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // save contacts to the file
 	}
 	fclose(fileOut);
 	printf("Contacts saved\n"); 
+}
+void loadFromFile(phonebook *dBook, int *C){
+	FILE *fileIn;
+	char filename[80];
+	char choice[80];
+	printf("Do you want to chose a file name? (yes or no)\n"); // ask if user wants to chose a file name
+	scanf("%s", choice);
+	if (strcmp(choice, "yes") == 0){
+		printf("Enter file name: ");
+		scanf("%s", filename);
+	} else {
+		strcpy(filename, "phonebook.pizza");
+	}
+	fileIn = fopen(filename, "r"); // open file for reading
+	fscanf(fileIn, "%d", &C); // read number of contacts from file
+	printf("%d\n", C);
+	int c = (int) C;
+	printf("%d\n", c);
+	int i;
+	for (i = 0; i < c; i++){
+		fscanf(fileIn, "%s %s %s", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // read contacts from file
+		printf("%s %s %s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // print contacts from file
+	}
+	fclose(fileIn);
+	printf("Contacts loaded\n");
 }
