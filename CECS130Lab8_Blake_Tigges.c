@@ -80,6 +80,11 @@ int main(){
 			numOfContacts = 3;
 			break;
 		case 8: // save to a file
+			if (c == 0){
+				printf("Your contacts are empty\n");
+				break;
+			}
+			saveToFile(dBook, c);
 			break;
 		case 9: // load from a file
 			break;
@@ -192,4 +197,23 @@ void deleteAllContacts(phonebook *dBook, int c){
 		dBook[i].number[0] = '\0';
 	}
 	printf("All contacts deleted\n");
+}
+void saveToFile(phonebook *dBook, int c){
+	FILE *fileOut;
+	char filename[80];
+	char choice[80];
+	printf("Do you want to chose a file name? (yes or no)\n"); // ask if user wants to chose a file name
+	if (strcmp(choice, "yes") == 0){
+		printf("Enter file name: ");
+		scanf("%s", filename);
+	} else {
+		strcpy(filename, "phonebook.pizza");
+	}
+	fileOut = fopen(filename, "w"); // open file for writing
+	int i;
+	for (i = 0; i < c; i++){
+		fprintf(fileOut, "%s %s %s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // save contacts to the file
+	}
+	fclose(fileOut);
+	printf("Contacts saved\n"); 
 }
