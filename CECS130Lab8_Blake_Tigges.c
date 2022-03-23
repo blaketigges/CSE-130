@@ -24,7 +24,7 @@ void findNumber(phonebook *book, int c);
 void selectRandomContact(phonebook *book, int c);
 void deleteAllContacts(phonebook *book, int c);
 void saveToFile(phonebook *book, int c);
-void loadFromFile(phonebook *book, int *C);
+void loadFromFile(phonebook *book);
 
 int main(){
 	int numOfContacts = 3; //number of contacts to start with
@@ -88,8 +88,11 @@ int main(){
 			saveToFile(dBook, c);
 			break;
 		case 9: // load from a file
-			loadFromFile(dBook, &c);
-			c = &dBook[0].size;
+			loadFromFile(dBook);
+			printf("%d\n", c);
+			printf("%d\n", C);
+			c = dBook[0].size;
+			printf("%d\n", c);
 			break;
 		}
 	}
@@ -222,10 +225,11 @@ void saveToFile(phonebook *dBook, int c){
 	fclose(fileOut);
 	printf("Contacts saved\n"); 
 }
-void loadFromFile(phonebook *dBook, int *C){
+void loadFromFile(phonebook *dBook){
 	FILE *fileIn;
 	char filename[80];
 	char choice[80];
+	int *C;
 	printf("Do you want to chose a file name? (yes or no)\n"); // ask if user wants to chose a file name
 	scanf("%s", choice);
 	if (strcmp(choice, "yes") == 0){
@@ -236,7 +240,9 @@ void loadFromFile(phonebook *dBook, int *C){
 	}
 	fileIn = fopen(filename, "r"); // open file for reading
 	fscanf(fileIn, "%d", &C); // read number of contacts from file
+	printf("%d\n", C);
 	int c = (int) C;
+	printf("%d\n", c);
 	int i;
 	for (i = 0; i < c; i++){
 		fscanf(fileIn, "%s %s %s", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // read contacts from file
