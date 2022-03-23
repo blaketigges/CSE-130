@@ -13,7 +13,7 @@ typedef struct{
 		char firstName[80];
 		char lastName[80];
 		char number[11];
-		int size;
+		int size; // only used to get count from load function
 	} phonebook;
 
 void addContact(phonebook *book, int c, int numOfContacts);
@@ -30,7 +30,6 @@ int main(){
 	int numOfContacts = 3; //number of contacts to start with
 	phonebook *dBook = malloc(numOfContacts * sizeof(phonebook)); // dynamic pointer
 	int c = 0; // current contact
-	int *C = &c;
 	int opt = 0; 
 	while (opt != 10){
 	printf("Phone Book Application\n    1) Add Friend \n    2) Delete Friend \n    3) Show phone book\n    4) Alphabetize the list\n    5) Find phone number for given name\n    6) Randomly pick number to call\n    7) Delete everyone\n    8) Save to file\n    9) Load from a file\n    10) Exit\n");
@@ -89,10 +88,10 @@ int main(){
 			break;
 		case 9: // load from a file
 			loadFromFile(dBook);
-			printf("%d\n", c);
-			printf("%d\n", C);
-			c = dBook[0].size;
-			printf("%d\n", c);
+			// printf("%d\n", c);
+			// printf("%d\n", C);
+			c = dBook[0].size; // set c to the number of contacts in the file
+			// printf("%d\n", c);
 			break;
 		}
 	}
@@ -240,15 +239,16 @@ void loadFromFile(phonebook *dBook){
 	}
 	fileIn = fopen(filename, "r"); // open file for reading
 	fscanf(fileIn, "%d", &C); // read number of contacts from file
-	printf("%d\n", C);
+	// printf("%d\n", C);
 	int c = (int) C;
-	printf("%d\n", c);
+	// printf("%d\n", c);
 	int i;
+	printf("Contacts in file: \n"); 
 	for (i = 0; i < c; i++){
 		fscanf(fileIn, "%s %s %s", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // read contacts from file
 		printf("%s %s %s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // print contacts from file
 	}
-	dBook[0].size = c;
+	dBook[0].size = c; // set to amount of contacts
 	fclose(fileIn);
 	printf("Contacts loaded\n");
 }
