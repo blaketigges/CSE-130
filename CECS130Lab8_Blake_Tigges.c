@@ -25,7 +25,7 @@ void selectRandomContact(phonebook *book, int c);
 void deleteAllContacts(phonebook *book, int c);
 void saveToFile(phonebook *book, int c);
 void loadFromFile(phonebook *book);
-
+void pLoad(phonebook *book);
 int main(){
 	int numOfContacts = 3; //number of contacts to start with
 	phonebook *dBook = malloc(numOfContacts * sizeof(phonebook)); // dynamic pointer
@@ -252,3 +252,19 @@ void loadFromFile(phonebook *dBook){
 	fclose(fileIn);
 	printf("Contacts loaded\n");
 }
+/* void pLoad(phonebook *dBook){
+	char name[80] = "phonebook.pizza";
+	FILE* inFile = fopen(name, "r");
+	int size;
+	fscanf(inFile, "%d", &size);
+	printf("Size = %d\n", size);
+	int i;
+	for (i = 0; i < size; i++){
+			fscanf(inFile, "%s", dBook[i].firstName);
+			fscanf(inFile, "%s", dBook[i].lastName);
+			fscanf(inFile, "%s", dBook[i].number);
+			printf("%s %s %s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number);
+	}
+	fclose(inFile);
+	dBook[0].size = size;
+} */ // delete later
