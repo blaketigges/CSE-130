@@ -25,7 +25,7 @@ void selectRandomContact(phonebook *book, int c);
 void deleteAllContacts(phonebook *book, int c);
 void saveToFile(phonebook *book, int c);
 void loadFromFile(phonebook *book);
-void pLoad(phonebook *book);
+
 int main(){
 	int numOfContacts = 3; //number of contacts to start with
 	phonebook *dBook = malloc(numOfContacts * sizeof(phonebook)); // dynamic pointer
@@ -204,6 +204,7 @@ void deleteAllContacts(phonebook *dBook, int c){
 	printf("All contacts deleted\n");
 }
 void saveToFile(phonebook *dBook, int c){
+	int i;
 	FILE *fileOut;
 	char filename[80];
 	char choice[80];
@@ -213,13 +214,14 @@ void saveToFile(phonebook *dBook, int c){
 		printf("Enter file name: ");
 		scanf("%s", filename);
 	} else {
-		strcpy(filename, "phonebook.pizza");
+		strcpy(filename, "book.txt");
 	}
 	fileOut = fopen(filename, "w"); // open file for writing
-	int i;
+	
 	fprintf(fileOut, "%d\n", c); // write number of contacts to file
 	for (i = 0; i < c; i++){
 		fprintf(fileOut, "%s %s %s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // save contacts to the file
+		printf("%s %s %s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number); // print contacts from file
 	}
 	fclose(fileOut);
 	printf("Contacts saved\n"); 
@@ -228,19 +230,19 @@ void loadFromFile(phonebook *dBook){
 	FILE *fileIn;
 	char filename[80];
 	char choice[80];
-	int *C;
+	int c;
 	printf("Do you want to chose a file name? (yes or no)\n"); // ask if user wants to chose a file name
 	scanf("%s", choice);
 	if (strcmp(choice, "yes") == 0){
 		printf("Enter file name: ");
 		scanf("%s", filename);
 	} else {
-		strcpy(filename, "phonebook.pizza");
+		strcpy(filename, "book.txt");
 	}
 	fileIn = fopen(filename, "r"); // open file for reading
-	fscanf(fileIn, "%d", &C); // read number of contacts from file
+	fscanf(fileIn, "%d", &c); // read number of contacts from file
 	// printf("%d\n", C);
-	int c = (int) C;
+	// int c = (int) C;
 	// printf("%d\n", c);
 	int i;
 	printf("Contacts in file: \n"); 
@@ -252,19 +254,3 @@ void loadFromFile(phonebook *dBook){
 	fclose(fileIn);
 	printf("Contacts loaded\n");
 }
-/* void pLoad(phonebook *dBook){
-	char name[80] = "phonebook.pizza";
-	FILE* inFile = fopen(name, "r");
-	int size;
-	fscanf(inFile, "%d", &size);
-	printf("Size = %d\n", size);
-	int i;
-	for (i = 0; i < size; i++){
-			fscanf(inFile, "%s", dBook[i].firstName);
-			fscanf(inFile, "%s", dBook[i].lastName);
-			fscanf(inFile, "%s", dBook[i].number);
-			printf("%s %s %s\n", dBook[i].firstName, dBook[i].lastName, dBook[i].number);
-	}
-	fclose(inFile);
-	dBook[0].size = size;
-} */ // delete later
