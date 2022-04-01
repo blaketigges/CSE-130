@@ -18,10 +18,7 @@
 			"problemMatcher": [
 				"$gcc"
 			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
+			"group": "build",
 			"detail": "compiler: C:\\MinGW\\bin\\gcc.exe"
 		},
 		{
@@ -39,7 +36,12 @@
 			},
 			"problemMatcher": [
 				"$gcc"
-			]
+			],
+			"detail": "compiler: C:\\MinGW\\bin\\g++.exe",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		},
 		{
 			"type": "shell",
