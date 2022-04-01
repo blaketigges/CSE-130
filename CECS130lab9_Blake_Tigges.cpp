@@ -17,17 +17,20 @@ class game{
 };
 
 int main(){
-    
+    cout << "Tic Tac Toe" << endl;
+    game tboard; // create board object
+    tboard.clearBoard(); // clear board
+    tboard.printBoard(); // print board
 }
 
-void clearBoard(){
+void game::clearBoard(){
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
             board[i][j] = ' ';
         }
     }
 }
-void printBoard(){
+void game::printBoard(){
     cout << "  A B C" << endl;
     for(int i = 0; i < 3; i++){
         cout << i+1 << " ";
