@@ -79,7 +79,7 @@ void game::whoWon(){
 }
 void game::checkWin(){
     // check for win
-    for (int j = 0; j < 3; j++){ // check for wins on each level
+    for (int j = 0; j < 3; j++){ // check for wins on each level but only inside that level
         for (int i = 0; i < 3; i++){ // check rows
             if ((board[i][0][j] == 'X' || board[i][0][j] == 'O') && board[i][0][j] == board[i][1][j] && board[i][1][j] == board[i][2][j]){
                 whoWon();
@@ -135,6 +135,7 @@ void game::printBoard(){
             }
             cout << endl;
         }
+        cout << endl;
     }
 }
 void game::first(){
