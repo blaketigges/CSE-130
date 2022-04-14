@@ -97,6 +97,18 @@ void game::checkWin(){
             whoWon(); // check who won
         }
     }
+    for (int k = 0; k < 3; k++) { // check for stacks of x or o
+        for (int i = 0; i < 3; i++){
+           if ((board[i][k][0] == 'X' || board[i][k][0] == 'O') && board[i][k][0] == board[i][k][1] && board[i][k][1] == board[i][k][2]){
+                whoWon();
+            } 
+        }
+    }
+    for (int i = 0; i < 3; i++){ // check rows
+            if ((board[i][0][0] == 'X' || board[i][0][0] == 'O') && board[i][0][j] == board[i][1][j] && board[i][1][j] == board[i][2][j]){
+                whoWon();
+            }
+        }
 }
 void game::flipActive(){ // function to change active
     if (active == 'X'){ // if active is x
