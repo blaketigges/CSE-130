@@ -50,8 +50,6 @@ int main(){
         checker.checkSymptoms(patient);
     }   
     checker.printSymptoms();
-
-
 }
 sickHuman::sickHuman(){ // randomly initialize symptoms
     fever = rand() % 2;
@@ -69,6 +67,9 @@ void symptomChecker::printSymptoms(){
     cout << cold << " patients have symptoms of Cold" << endl;
     cout << flu << " patients have symptoms of Flu" << endl;
     cout << other << " patients may have some other illness" << endl;
+    if ((covid + cold + flu + other) > numPatients){
+        cout << "(Some patients have more than one illness)" << endl; // if some count for more than one illness tell user
+    }
     cout << "=========================================================" << endl << endl;
     cout << "Percentage of each illness: " << endl;
     cout << "COVID-19: \t[" << ((covid * 1.0) / (numPatients* 1.0)) * 100 << "%]"; // print percentage of covid
@@ -89,15 +90,23 @@ void symptomChecker::printSymptoms(){
     }
 }
 void symptomChecker::checkSymptoms(sickHuman patient){
+    int nope = 0;
     if (patient.fever == 1 && patient.cough == 1 && patient.headache == 1 && patient.fatigue == 1){
         flu++;
+    } else {
+        nope++;
     }
     if (patient.fever == 1 && patient.cough == 1 && patient.shortness == 1 ){
         covid++;
-    }  
+    }  else {
+        nope++;
+    }
     if (patient.runnyNose == 1 && patient.sneezing == 1){
         cold++;
     } else {
+        nope++;
+    }
+    if (nope == 3) {
         other++;
     }
 }
