@@ -11,11 +11,11 @@ Blake Tigges
 using namespace std; 
 
 class human {
-    bool hasSymptoms = false;
+    bool hasSymptoms = false; // useless bool
 };
-class sickHuman : public human {
+class sickHuman : public human { // derive from human because it says to use derived class
     public: 
-    bool hasSymptoms = true;
+    bool hasSymptoms = true; // still useless but redefined 
     int fever;
     int cough;
     int shortness;
@@ -31,7 +31,7 @@ class symptomChecker {
         void printSymptoms();
         void printGuide();
         int numPatients;
-    private:
+    private: 
         int covid = 0;
         int cold = 0;
         int flu = 0;
@@ -89,12 +89,14 @@ void symptomChecker::printSymptoms(){
     }
 }
 void symptomChecker::checkSymptoms(sickHuman patient){
+    if (patient.fever == 1 && patient.cough == 1 && patient.headache == 1 && patient.fatigue == 1){
+        flu++;
+    }
     if (patient.fever == 1 && patient.cough == 1 && patient.shortness == 1 ){
         covid++;
-    } else if (patient.runnyNose == 1 && patient.sneezing == 1){
+    }  
+    if (patient.runnyNose == 1 && patient.sneezing == 1){
         cold++;
-    } else if (patient.fever == 1 && patient.cough == 1 && patient.headache == 1 && patient.fatigue == 1){
-        flu++;
     } else {
         other++;
     }
