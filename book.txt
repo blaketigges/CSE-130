@@ -1,7 +1,0 @@
-6
-a a a
-b b b
-d d d
-c  c
-t t t
-h h h
